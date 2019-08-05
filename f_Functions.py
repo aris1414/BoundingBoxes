@@ -33,7 +33,7 @@ def get_rim_id_from_filename(path):
     short_filename = splited_filename[0]
     length = len(short_filename)
 
-    rim_number = short_filename[length-4-1:length]
+    rim_number = short_filename[3:6]
     rim_number_int = int(rim_number)
 
     return rim_number_int
@@ -42,8 +42,18 @@ def get_rim_id_from_filename(path):
 def generate_text_file_name(path):
 
     name_without_ext = path.split('.')
-    result = name_without_ext + '.txt'
+    result = name_without_ext[0] + '.txt'
     return result
+
+
+def save_file(path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
+    file = open(path,"a")
+    data_frame = str(rim_id) + ' ' + str(bb_center_x) + ' ' + str(bb_center_y) + ' ' + str(bb_width) + ' ' + str(bb_height)
+    file.write(data_frame)
+    file.close()
+
+
+
 
 
 

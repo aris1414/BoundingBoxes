@@ -77,6 +77,13 @@ def make_bounding_box(img_color, img_gray, circle):
     x_center = float(circle[0,0] / image_width) #Środek BoundingBoxa
     y_center = float(circle[0,1] / image_height)
 
+    img_temp = img_color
+
+    cv.rectangle(img_temp, (left_top_x, left_top_y), (right_bottom_x, right_bottom_y), (0,0,255),1,4)
+    cv.imshow("test_win", img_temp)
+    cv.waitKey(200)
+
+
     return x_center, y_center, x_abs, y_abs
 
 
