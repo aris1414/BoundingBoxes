@@ -8,8 +8,9 @@ file_list = get_list_of_files_in_directory(path, '.bmp')
 
 for i in file_list:
 
-
-    #img = load_image(i)
-    #circles = find_circle(img, 5)
-    #make_bounding_box(img, circles)
+    get_rim_id_from_filename(i)
+    img = load_image(i)
+    img_prepared = prepare_image(img, 3)
+    circles = find_circle(img_prepared)
+    make_bounding_box(img, img_prepared, circles)
 pass
