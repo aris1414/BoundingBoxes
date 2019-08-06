@@ -6,7 +6,7 @@ import time
 
 start_time = time.time()
 
-path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia zmniejszone 320x240\\Test'
+path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia zmniejszone 320x240\\Rim001'
 file_list = get_list_of_files_in_directory(path, '.bmp')
 wrong_bb = []
 

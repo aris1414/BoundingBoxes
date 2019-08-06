@@ -55,15 +55,15 @@ def make_bounding_box(img_color, img_gray, circle):
     y_cord = circle[0,1]
     radius = circle[0,2] 
 
-    left_top_x = int((x_cord - radius) * 1) # Wyszukiwanie boków BoundingBoxa - lewy górny
-    left_top_y = int((y_cord - radius) * 1)
-    left_bottom_x = int((x_cord - radius) * 1)# Wyszukiwanie boków BoundingBoxa - lewy dolny
-    left_bottom_y = int((y_cord + radius) * 1)
+    left_top_x = int((x_cord - radius) * 0.85) # Wyszukiwanie boków BoundingBoxa - lewy górny
+    left_top_y = int((y_cord - radius) * 0.85)
+    left_bottom_x = int((x_cord - radius) * 0.85)# Wyszukiwanie boków BoundingBoxa - lewy dolny
+    left_bottom_y = int((y_cord + radius) * 0.85)
 
-    right_top_x = int((x_cord + radius) * 1) # Wyszukiwanie boków BoundingBoxa - prawy górny
-    right_top_y = int((y_cord - radius) * 1)
-    right_bottom_x = int((x_cord + radius) * 1) # Wyszukiwanie boków BoundingBoxa - prawy dolny
-    right_bottom_y = int((y_cord + radius) * 1)
+    right_top_x = int((x_cord + radius) * 1.05) # Wyszukiwanie boków BoundingBoxa - prawy górny
+    right_top_y = int((y_cord - radius) * 1.05)
+    right_bottom_x = int((x_cord + radius) * 1.05) # Wyszukiwanie boków BoundingBoxa - prawy dolny
+    right_bottom_y = int((y_cord + radius) * 1.05)
 
     x_min_norm = float(left_top_x / image_width) 
     x_max_norm = float(right_top_x / image_width)
