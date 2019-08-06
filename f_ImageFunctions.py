@@ -37,7 +37,9 @@ def prepare_image(img, kernel):
 def find_circle(img):
 
     new_img = img
-    big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT, 1, 600, 40,20, 20, 80)
+    image_height, image_width = img.shape
+    #big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT, 1, 600, 40,20, 20, 80) #Konfiguracja dla rozdzielczości 640x480
+    big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT,  1, 600, 70,20, 1, 10) #Konfuguracja dla rozdzielczości 320x240
     for i in big_circles[0,:]:
         cv.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
 
@@ -73,7 +75,6 @@ def make_bounding_box(img_color, img_gray, circle):
     x_abs = x_max_norm - x_min_norm #Obliczanie długości boku - oś X   
     y_abs = y_max_norm - y_min_norm  #Obliczanie długości boku - oś Y
 
-
     x_center = float(circle[0,0] / image_width) #Środek BoundingBoxa
     y_center = float(circle[0,1] / image_height)
 
@@ -81,7 +82,7 @@ def make_bounding_box(img_color, img_gray, circle):
 
     cv.rectangle(img_temp, (left_top_x, left_top_y), (right_bottom_x, right_bottom_y), (0,0,255),1,4)
     cv.imshow("test_win", img_temp)
-    cv.waitKey(200)
+    cv.waitKey(100)
 
 
     return x_center, y_center, x_abs, y_abs

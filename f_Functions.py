@@ -53,6 +53,16 @@ def save_file(path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
     file.close()
 
 
+def save_wrong_bb(filename,wrong_bb):
+
+    file = open(filename, "a")
+    for i in wrong_bb:
+        file.write(str(i) + '\n')
+
+    file.close()
+
+
+
 
 
 
