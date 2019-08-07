@@ -47,8 +47,8 @@ def generate_text_file_name(path):
 
 
 def save_file(path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
-    file = open(path,"w+")
-    data_frame = str(rim_id) + ' ' + str(bb_center_x) + ' ' + str(bb_center_y) + ' ' + str(bb_width) + ' ' + str(bb_height)
+    file = open(path,"a")
+    data_frame = str(path) + ' ' + str(rim_id) + ' ' + str(bb_center_x) + ' ' + str(bb_center_y) + ' ' + str(bb_width) + ' ' + str(bb_height) + '\n'
     file.write(data_frame)
     file.close()
 

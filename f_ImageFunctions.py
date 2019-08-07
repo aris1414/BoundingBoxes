@@ -149,7 +149,6 @@ def manual_mode(img):
  
         # if the 'c' key is pressed, break from the loop
         elif key == ord("c"):
-
             cv.destroyAllWindows()
             break
 
