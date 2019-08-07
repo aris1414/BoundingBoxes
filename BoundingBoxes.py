@@ -10,7 +10,7 @@ mode = input('Twoj wybor: ')
 end_flag = False
 
 #Warunek zakończenia pracy
-if ((mode != 1 and mode != 2)):
+if ((mode != '1' and mode != '2')):
     end_flag = True
 start_time = time.time()
 
@@ -18,7 +18,7 @@ start_time = time.time()
 
 while(not end_flag):
 
-    if mode == 1: #Jeśli tryb automatyczny
+    if mode == '1': #Jeśli tryb automatyczny
     
         path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia zmniejszone 320x240'
         file_list = get_list_of_files_in_directory(path, '.bmp')
@@ -49,18 +49,17 @@ while(not end_flag):
         save_wrong_bb('wrong_bb.txt',wrong_bb) #Zapis informacji o potencjalnie złych BoundingBoxach
         end_flag = True
 
-    elif(mode == 2): #Jeśli tryb ręczny
+    elif(mode == '2'): #Jeśli tryb ręczny
 
         wrong_bbs = read_wrong_bb('wrong_bb.txt') #Odczytaj plik z danymi do oznaczenia
         for i in wrong_bbs:
             img = load_image(i)
             img_prepared = prepare_image(img, 3)
-            clone = img_prepared.clone()
-            roi = manual_mode(clone)
+            roi = manual_mode(img)
             x_center_norm, y_center_norm, x_width_norm, y_height_norm = make_bounding_box_manual(img, img_prepared, roi)
             rim_id = get_rim_id_from_filename(i)
             text_path = generate_text_file_name(i)
-            save_file(text_path, rim_id, x_center, y_center, x_width, y_height)
+            #save_file(text_path, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm)
 
 
         end_flag = True

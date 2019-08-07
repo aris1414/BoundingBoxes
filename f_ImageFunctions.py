@@ -118,8 +118,6 @@ def make_bounding_box_manual(img_color, img_gray, rect_points):
 def mouse_click(event, x, y, flags, param):
 
     global refPt
-    global cropping
-
     if (event == cv.EVENT_LBUTTONDOWN):
         refPt = [(x, y)]
         cropping = True
@@ -130,30 +128,30 @@ def mouse_click(event, x, y, flags, param):
         cropping = False
 
 
-    pass
-
  
 def manual_mode(img):
 
+    
+    global refPt
+    cv.namedWindow("Manual")
     cv.setMouseCallback("Manual", mouse_click)
-    clone = img.clone()
-    clone_gray = cv.cvtColor(clone, cv.COLOR_BGR2GRAY)
-
+    img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     while True:
-        cv.imshow("Manual", clone)
-        key = cv2.waitKey(1) & 0xFF
+        cv.imshow("Manual", img_gray)
+        key = cv.waitKey(1) & 0xFF
  
         # if the 'r' key is pressed, reset the cropping region
         if key == ord("r"):
-            image = clone.copy()
+            image = img_gray
  
         # if the 'c' key is pressed, break from the loop
         elif key == ord("c"):
+
             cv.destroyAllWindows()
             break
-    if len(ref_Pt) == 2:
-        roi = ref_Pt
-
+    if len(refPt) == 2:
+        roi = refPt
+        return roi
     else:
         print('Error')
         exit

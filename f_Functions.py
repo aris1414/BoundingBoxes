@@ -66,15 +66,13 @@ def read_wrong_bb(path):
 
     file = open(path,"r")
     list_of_files = []
-    lines = file.readlines()
+    lines = file.read().splitlines()
     for i in lines:
         list_of_files.append(i)
         print(i,'\n')
+    file.close()
 
-   # print(lines)
-    pass
-    return lines
-
+    return list_of_files
 
 
 
