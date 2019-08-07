@@ -2,6 +2,9 @@ import cv2 as cv
 import numpy as np
 import copy
 
+refPt = []
+crooping = False
+
 def load_image(path):
     return cv.imread(path)
 pass
@@ -55,10 +58,10 @@ def make_bounding_box(img_color, img_gray, circle):
     y_cord = circle[0,1]
     radius = circle[0,2] 
 
-    left_top_x = int((x_cord - radius) * 0.85) # Wyszukiwanie boków BoundingBoxa - lewy górny
-    left_top_y = int((y_cord - radius) * 0.85)
-    left_bottom_x = int((x_cord - radius) * 0.85)# Wyszukiwanie boków BoundingBoxa - lewy dolny
-    left_bottom_y = int((y_cord + radius) * 0.85)
+    left_top_x = int((x_cord - radius) * 0.9) # Wyszukiwanie boków BoundingBoxa - lewy górny
+    left_top_y = int((y_cord - radius) * 0.9)
+    left_bottom_x = int((x_cord - radius) * 0.9)# Wyszukiwanie boków BoundingBoxa - lewy dolny
+    left_bottom_y = int((y_cord + radius) * 0.9)
 
     right_top_x = int((x_cord + radius) * 1.05) # Wyszukiwanie boków BoundingBoxa - prawy górny
     right_top_y = int((y_cord - radius) * 1.05)
@@ -87,8 +90,80 @@ def make_bounding_box(img_color, img_gray, circle):
 
     return x_center, y_center, x_abs, y_abs
 
+def make_bounding_box_manual(img_color, img_gray, rect_points):
+
+    img_normalized = normalize_image(img_gray) #Normalizacja obrazu w skali szarości
+    image_height, image_width = img_gray.shape #Rozmiar obrazu
+
+    left_top = rect_points[0]
+    right_bottom = rect_points[1]
+
+    x_center = int((left_top[0] + right_bottom[0])/2)
+    y_center = int((left_top[1] + right_bottom[1])/2)
+
+    x_center_norm = float(x_center/image_width)
+    y_center_norm = float(y_center/image_height)
+
+    x_width = right_bottom[0] - left_top[0]
+    y_height = right_bottom[1] - left_top[1]
+
+    x_width_norm = float(x_width / image_width)
+    y_width_norm = float(y_height / image_height)
+    
+
+    return x_center_norm, y_center_norm, x_width_norm, y_width_norm
 
 
+
+def mouse_click(event, x, y, flags, param):
+
+    global refPt
+    global cropping
+
+    if (event == cv.EVENT_LBUTTONDOWN):
+        refPt = [(x, y)]
+        cropping = True
+ 
+	# check to see if the left mouse button was released
+    elif (event == cv.EVENT_LBUTTONUP):
+        refPt.append((x, y))
+        cropping = False
+
+
+    pass
+
+ 
+def manual_mode(img):
+
+    cv.setMouseCallback("Manual", mouse_click)
+    clone = img.clone()
+    clone_gray = cv.cvtColor(clone, cv.COLOR_BGR2GRAY)
+
+    while True:
+        cv.imshow("Manual", clone)
+        key = cv2.waitKey(1) & 0xFF
+ 
+        # if the 'r' key is pressed, reset the cropping region
+        if key == ord("r"):
+            image = clone.copy()
+ 
+        # if the 'c' key is pressed, break from the loop
+        elif key == ord("c"):
+            cv.destroyAllWindows()
+            break
+    if len(ref_Pt) == 2:
+        roi = ref_Pt
+
+    else:
+        print('Error')
+        exit
+
+
+
+
+
+
+    
 
 
 

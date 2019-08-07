@@ -62,6 +62,20 @@ def save_wrong_bb(filename,wrong_bb):
     file.close()
 
 
+def read_wrong_bb(path):
+
+    file = open(path,"r")
+    list_of_files = []
+    lines = file.readlines()
+    for i in lines:
+        list_of_files.append(i)
+        print(i,'\n')
+
+   # print(lines)
+    pass
+    return lines
+
+
 
 
 
