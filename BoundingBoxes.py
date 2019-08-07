@@ -18,14 +18,15 @@ path = 'C:\\Users\\robawjo\\Desktop\\Black_Together'
 dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\labels.txt'
 wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Together\\wrong_bb.txt'
 
-initialize_file(dest_file_path)
-initialize_file(wrong_bb_path)
+
+
 
 while(not end_flag):
 
     if mode == '1': #Jeśli tryb automatyczny
-    
-        
+        initialize_file(dest_file_path)
+        initialize_file(wrong_bb_path)
+
         file_list = get_list_of_files_in_directory(path, '.bmp')
         wrong_bb = []
 
@@ -45,9 +46,9 @@ while(not end_flag):
                
             if (x_width > (x_width_old * 1.2)) or (y_height > (y_height_old * 1.2)):
                 print(i, '\n')
-                save_wrong_bb(wrong_bb_path, wrong_bb) #Zapis informacji o potencjalnie złych BoundingBoxach
+                save_wrong_bb(wrong_bb_path, i) #Zapis informacji o potencjalnie złych BoundingBoxach
             else:
-                save_file(dest_file_path, rim_id, x_center, y_center, x_width, y_height)
+                save_file(dest_file_path, i, rim_id, x_center, y_center, x_width, y_height)
 
             x_width_old = x_width
             y_height_old = y_height
@@ -56,7 +57,7 @@ while(not end_flag):
 
     elif(mode == '2'): #Jeśli tryb ręczny
 
-        wrong_bbs = read_wrong_bb('wrong_bb.txt') #Odczytaj plik z danymi do oznaczenia
+        wrong_bbs = read_wrong_bb(wrong_bb_path) #Odczytaj plik z danymi do oznaczenia
         for i in wrong_bbs:
             img = load_image(i)
             img_prepared = prepare_image(img, 3)
@@ -64,11 +65,10 @@ while(not end_flag):
             x_center_norm, y_center_norm, x_width_norm, y_height_norm = make_bounding_box_manual(img, img_prepared, roi)
             rim_id = get_rim_id_from_filename(i)
             #text_path = generate_text_file_name(i)
-            save_file(dest_file_path, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm)
+            save_file(dest_file_path, i, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm) #Zapis wyników
 
 
-        end_flag = True
-
+        end_flag = True #Flaga konca pracy
 
 
     end_time = time.time()
