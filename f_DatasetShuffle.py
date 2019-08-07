@@ -53,7 +53,13 @@ def check_that_file_exist_in_train_dataset(target, train_indexes):
 
     return False
 
+def get_new_file_path(source_path, dest_folder):
 
+    splited_path = source_path.split('\\')
+    path_size = len(splited_path)
+
+    new_path = dest_folder + '\\' + splited_path[path_size-1]
+    return new_path
 
 #Tworzy zbiory plików
 def copy_image_files(list_of_files, train_indexes, train_path, test_indexes, test_path):
@@ -67,13 +73,22 @@ def copy_image_files(list_of_files, train_indexes, train_path, test_indexes, tes
         temp_path2 = list_of_files[j]
         shutil.copy2(temp_path2, test_path)
 
-def copy_label_data(list_of_files, list_of_labels, train_indexes, train_label_path, test_indexes, test_label_path):
+
+
+def copy_label_data(list_of_files, list_of_labels, train_indexes, train_folder_path, train_label_path, test_indexes,test_folder_path, test_label_path):
 
     for i in train_indexes:
-        append_label_to_file(train_label_path, list_of_labels[i])
+        head, tail = list_of_labels[i].split(' ')
+        new_head = get_new_file_path(head, train_folder_path)
+        new_line = new_head + ' ' + tail
+        append_label_to_file(train_label_path, new_line)
 
     for j in train_indexes:
-        append_label_to_file(test_label_path, list_of_labels[j])
+        head, tail = list_of_labels[j].split(' ')
+        new_head = get_new_file_path(head, test_folder_path)
+        new_line = new_head + ' ' + tail
+        append_label_to_file(test_label_path, new_line)
+
 
 def read_label_file(path):
 
@@ -96,6 +111,8 @@ def process_label_list(list_of_labels):
         head,tail = i.split(' ')
         splited_list.append(head)
     return splited_list
+
+
 
 def append_label_to_file(path, data):
 

@@ -99,7 +99,7 @@ while(not end_flag):
             test_indexes = generate_test_dataset_indexes(num_of_files, train_indexes)
 
             copy_image_files(splited_list, train_indexes, train_set_path, test_indexes, test_set_path)
-            copy_label_data(splited_list, label_list,train_indexes, train_set_file, test_indexes, test_set_file)
+            copy_label_data(splited_list, label_list,train_indexes, train_set_path, train_set_file, test_indexes, test_set_path, test_set_file)
 
         end_flag = True
 
