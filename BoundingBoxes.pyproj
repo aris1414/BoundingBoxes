@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BoundingBoxes.py" />
+    <Compile Include="f_DatasetShuffle.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="f_Functions.py">
       <SubType>Code</SubType>
     </Compile>

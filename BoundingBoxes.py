@@ -5,20 +5,20 @@ import time
 
 
 #Wybór trybu pracy
-print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - koniec programu \n')
+print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - Podział na zbiory uczacy i testujący \n')
 mode = input('Twoj wybor: ')
 end_flag = False
 
 #Warunek zakończenia pracy
-if ((mode != '1' and mode != '2')):
+if ((mode != '1' and mode != '2' and mode != '3')):
     end_flag = True
 start_time = time.time()
 
 path = 'C:\\Users\\robawjo\\Desktop\\Black_Together'
 dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\labels.txt'
 wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Together\\wrong_bb.txt'
-
-
+train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set.txt'
+test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set.txt'
 
 
 while(not end_flag):
@@ -69,6 +69,11 @@ while(not end_flag):
 
 
         end_flag = True #Flaga konca pracy
+
+
+    elif (mode == '3'):
+        pass
+
 
 
     end_time = time.time()
