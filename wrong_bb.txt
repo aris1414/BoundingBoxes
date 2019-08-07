@@ -55,3 +55,6 @@ C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Rim012\Orange\Rim012_o_0002
 C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Rim012\White\Rim012_w_00007.bmp
 C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Rim012\White\Rim012_w_00018.bmp
 C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Rim012\White\Rim012_w_00024.bmp
+C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Test\White\Rim012_w_00007.bmp
+C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Test\White\Rim012_w_00018.bmp
+C:\Users\robawjo\Desktop\Zdjecia zmniejszone 320x240\Test\White\Rim012_w_00024.bmp

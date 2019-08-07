@@ -59,7 +59,7 @@ while(not end_flag):
             x_center_norm, y_center_norm, x_width_norm, y_height_norm = make_bounding_box_manual(img, img_prepared, roi)
             rim_id = get_rim_id_from_filename(i)
             text_path = generate_text_file_name(i)
-            #save_file(text_path, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm)
+            save_file(text_path, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm)
 
 
         end_flag = True

@@ -133,24 +133,36 @@ def manual_mode(img):
 
     
     global refPt
+    refPt.clear()
     cv.namedWindow("Manual")
     cv.setMouseCallback("Manual", mouse_click)
+    img_backup = copy.copy(img)
     img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     while True:
-        cv.imshow("Manual", img_gray)
+        cv.imshow("Manual", img)
         key = cv.waitKey(1) & 0xFF
  
         # if the 'r' key is pressed, reset the cropping region
         if key == ord("r"):
-            image = img_gray
+            refPt.clear()
+            img = img_backup
  
         # if the 'c' key is pressed, break from the loop
         elif key == ord("c"):
 
             cv.destroyAllWindows()
             break
+
+        if(len(refPt)==2):
+            cv.rectangle(img, refPt[0], refPt[1], (0, 255, 0), 2)
+
     if len(refPt) == 2:
+        img_roi = img[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
+        cv.imshow("ROI",img_roi)
+        cv.waitKey(0)
         roi = refPt
+
+        cv.destroyAllWindows()
         return roi
     else:
         print('Error')
