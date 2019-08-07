@@ -48,7 +48,7 @@ def generate_text_file_name(path):
 
 def save_file(path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
     file = open(path,"a")
-    data_frame = str(path) + ' ' + str(rim_id) + ' ' + str(bb_center_x) + ' ' + str(bb_center_y) + ' ' + str(bb_width) + ' ' + str(bb_height) + '\n'
+    data_frame = str(path) +  ' ' + str(bb_center_x) + ',' + str(bb_center_y) + ',' + str(bb_width) + ',' + str(bb_height) + ',' + str(rim_id) + '\n'
     file.write(data_frame)
     file.close()
 
@@ -56,9 +56,7 @@ def save_file(path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
 def save_wrong_bb(filename,wrong_bb):
 
     file = open(filename, "a")
-    for i in wrong_bb:
-        file.write(str(i) + '\n')
-
+    file.write(str(i) + '\n')
     file.close()
 
 
@@ -73,6 +71,12 @@ def read_wrong_bb(path):
     file.close()
 
     return list_of_files
+
+
+def initialize_file(path):
+
+    file = open(path,"w")
+    file.close()
 
 
 

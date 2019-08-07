@@ -18,6 +18,8 @@ path = 'C:\\Users\\robawjo\\Desktop\\Black_Together'
 dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\labels.txt'
 wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Together\\wrong_bb.txt'
 
+initialize_file(dest_file_path)
+initialize_file(wrong_bb_path)
 
 while(not end_flag):
 
@@ -43,14 +45,13 @@ while(not end_flag):
                
             if (x_width > (x_width_old * 1.2)) or (y_height > (y_height_old * 1.2)):
                 print(i, '\n')
-                wrong_bb.append(i)
+                save_wrong_bb(wrong_bb_path, wrong_bb) #Zapis informacji o potencjalnie złych BoundingBoxach
             else:
                 save_file(dest_file_path, rim_id, x_center, y_center, x_width, y_height)
 
             x_width_old = x_width
             y_height_old = y_height
 
-        save_wrong_bb(wrong_bb_path,wrong_bb) #Zapis informacji o potencjalnie złych BoundingBoxach
         end_flag = True
 
     elif(mode == '2'): #Jeśli tryb ręczny
