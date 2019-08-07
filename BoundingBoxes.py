@@ -1,8 +1,9 @@
 import numpy as np
 from f_Functions import *
 from f_ImageFunctions import *
+from f_DatasetShuffle import *
 import time
-
+import os
 
 #Wybór trybu pracy
 print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - Podział na zbiory uczacy i testujący \n')
@@ -17,8 +18,10 @@ start_time = time.time()
 path = 'C:\\Users\\robawjo\\Desktop\\Black_Together'
 dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\labels.txt'
 wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Together\\wrong_bb.txt'
-train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set.txt'
-test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set.txt'
+train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set'
+test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set'
+train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set\\train.txt'
+test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set\\test.txt'
 
 
 while(not end_flag):
@@ -72,8 +75,33 @@ while(not end_flag):
 
 
     elif (mode == '3'):
-        pass
+        train_folder_exist = os.path.exists(train_set_path)
+        test_folder_exist = os.path.exists(test_set_path)
 
+        if train_folder_exist == False:
+            os.mkdir(train_set_path, 0o777)
+        if test_folder_exist == False:
+            os.mkdir(test_set_path, 0o777)       
+
+
+        label_list = read_label_file(dest_file_path) #Zaczytanie danych po procesie oznaczania
+        splited_list = process_label_list(label_list) #Odseparowanie ścieżki do pliku 
+        num_of_files = len(splited_list)
+
+        if num_of_files > 0:
+            pass
+            train_amount, test_amount = divide_by_ratio(num_of_files,0.7)
+
+            print('Zbior uczacy bedzie zawieral ',train_amount, 'zdjec\n')
+            print('Zbior testowy bedzie zawieral ',test_amount, 'zdjec\n')
+
+            train_indexes = generate_train_dataset_indexes(num_of_files, train_amount)
+            test_indexes = generate_test_dataset_indexes(num_of_files, train_indexes)
+
+            copy_image_files(splited_list, train_indexes, train_set_path, test_indexes, test_set_path)
+            copy_label_data(splited_list, label_list,train_indexes, train_set_file, test_indexes, test_set_file)
+
+        end_flag = True
 
 
     end_time = time.time()
