@@ -90,6 +90,7 @@ def copy_label_data(list_of_files, list_of_labels, train_indexes, train_folder_p
         append_label_to_file(test_label_path, new_line)
 
 
+
 def read_label_file(path):
 
 
