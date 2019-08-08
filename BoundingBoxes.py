@@ -90,7 +90,7 @@ while(not end_flag):
 
         if num_of_files > 0:
             pass
-            train_amount, test_amount = divide_by_ratio(num_of_files,0.7)
+            train_amount, test_amount = divide_by_ratio(num_of_files,0.8)
 
             print('Zbior uczacy bedzie zawieral ',train_amount, 'zdjec\n')
             print('Zbior testowy bedzie zawieral ',test_amount, 'zdjec\n')

@@ -41,8 +41,8 @@ def find_circle(img):
 
     new_img = img
     image_height, image_width = img.shape
-    #big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT, 1, 600, 40,20, 20, 80) #Konfiguracja dla rozdzielczości 640x480
-    big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT,  1, 600, 70,20, 1, 10) #Konfuguracja dla rozdzielczości 320x240
+    big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT, 1, 600, 40,20, 20, 80) #Konfiguracja dla rozdzielczości 640x480
+    #big_circles = cv.HoughCircles(new_img, cv.HOUGH_GRADIENT,  1, 600, 70,20, 1, 10) #Konfuguracja dla rozdzielczości 320x240
     for i in big_circles[0,:]:
         cv.circle(img,(i[0],i[1]),i[2],(0,255,0),2)
 
@@ -58,15 +58,15 @@ def make_bounding_box(img_color, img_gray, circle):
     y_cord = circle[0,1]
     radius = circle[0,2] 
 
-    left_top_x = int((x_cord - radius) * 0.9) # Wyszukiwanie boków BoundingBoxa - lewy górny
-    left_top_y = int((y_cord - radius) * 0.9)
-    left_bottom_x = int((x_cord - radius) * 0.9)# Wyszukiwanie boków BoundingBoxa - lewy dolny
-    left_bottom_y = int((y_cord + radius) * 0.9)
+    left_top_x = int((x_cord - radius) * 0.95) # Wyszukiwanie boków BoundingBoxa - lewy górny
+    left_top_y = int((y_cord - radius) * 0.95)
+    left_bottom_x = int((x_cord - radius) * 0.95)# Wyszukiwanie boków BoundingBoxa - lewy dolny
+    left_bottom_y = int((y_cord + radius) * 0.95)
 
-    right_top_x = int((x_cord + radius) * 1.05) # Wyszukiwanie boków BoundingBoxa - prawy górny
-    right_top_y = int((y_cord - radius) * 1.05)
-    right_bottom_x = int((x_cord + radius) * 1.05) # Wyszukiwanie boków BoundingBoxa - prawy dolny
-    right_bottom_y = int((y_cord + radius) * 1.05)
+    right_top_x = int((x_cord + radius) * 1.03) # Wyszukiwanie boków BoundingBoxa - prawy górny
+    right_top_y = int((y_cord - radius) * 1.03)
+    right_bottom_x = int((x_cord + radius) * 1.03) # Wyszukiwanie boków BoundingBoxa - prawy dolny
+    right_bottom_y = int((y_cord + radius) * 1.03)
 
    # x_min_norm = float(left_top_x / image_width) 
     #x_max_norm = float(right_top_x / image_width)
