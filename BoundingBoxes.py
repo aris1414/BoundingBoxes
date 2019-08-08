@@ -90,7 +90,9 @@ while(not end_flag):
 
         if num_of_files > 0:
             pass
-            train_amount, test_amount = divide_by_ratio(num_of_files,0.8)
+            print('Podaj wspolczynnik danych uczacych: \n')
+            ratio = input('Ratio: ')
+            train_amount, test_amount = divide_by_ratio(num_of_files,ratio)
 
             print('Zbior uczacy bedzie zawieral ',train_amount, 'zdjec\n')
             print('Zbior testowy bedzie zawieral ',test_amount, 'zdjec\n')
