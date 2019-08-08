@@ -83,7 +83,7 @@ def copy_label_data(list_of_files, list_of_labels, train_indexes, train_folder_p
         new_line = new_head + ' ' + tail
         append_label_to_file(train_label_path, new_line)
 
-    for j in train_indexes:
+    for j in test_indexes:
         head, tail = list_of_labels[j].split(' ')
         new_head = get_new_file_path(head, test_folder_path)
         new_line = new_head + ' ' + tail
