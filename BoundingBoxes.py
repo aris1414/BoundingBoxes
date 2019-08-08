@@ -15,13 +15,13 @@ if ((mode != '1' and mode != '2' and mode != '3')):
     end_flag = True
 start_time = time.time()
 
-path = 'C:\\Users\\robawjo\\Desktop\\Black_Together'
-dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\labels.txt'
-wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Together\\wrong_bb.txt'
-train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set'
-test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set'
-train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\train_set\\train.txt'
-test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Together\\test_set\\test.txt'
+path = 'C:\\Users\\robawjo\\Desktop\\Black_Big'
+dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\labels.txt'
+wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Big\\wrong_bb.txt'
+train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set'
+test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set'
+train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set\\train.txt'
+test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set\\test.txt'
 
 
 while(not end_flag):
