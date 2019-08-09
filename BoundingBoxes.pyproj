@@ -28,6 +28,9 @@
     <Compile Include="f_Functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="f_GlobalFunctions.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="f_ImageFunctions.py">
       <SubType>Code</SubType>
     </Compile>
