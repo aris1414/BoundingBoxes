@@ -103,7 +103,7 @@ def copy_label_data_tf(list_of_files, list_of_labels, train_indexes, train_folde
         splited = list_of_labels[i].split(',')
         tail = str(splited[1]) + ',' + str(splited[2]) + ',' + str(splited[3]) + ',' + str(splited[4]) + ',' + str(splited[5]) + ',' + str(splited[6]) + ',' + str(splited[7]) 
         new_head = get_new_file_path(splited[0], test_folder_path)
-        new_line = new_head + ' ' + tail
+        new_line = new_head + ',' + tail
         append_label_to_file(test_label_path, new_line)
 
 
@@ -128,6 +128,15 @@ def process_label_list(list_of_labels):
 
         head,tail = i.split(' ')
         splited_list.append(head)
+    return splited_list
+
+def process_label_list_tf(list_of_labels):
+
+    splited_list = []
+    for i in list_of_labels:
+
+        splited = i.split(',')
+        splited_list.append(splited[0])
     return splited_list
 
 
