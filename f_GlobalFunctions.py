@@ -89,9 +89,6 @@ def yolo_v3(mode, source_folder, dest_label_file, wrong_label_file, train_set_pa
         end_flag = True
 
 
-    end_time = time.time()
-    time_of_execution = end_time - start_time
-    print('Czas wykonania programu: ', time_of_execution)
 
 
 def tensorflow_object_detection(mode, source_folder, dest_label_file, wrong_label_file, train_set_path, train_set_file, test_set_path, test_set_file):
@@ -142,8 +139,10 @@ def tensorflow_object_detection(mode, source_folder, dest_label_file, wrong_labe
             roi = manual_mode(img)
             x_center_norm, y_center_norm, x_width_norm, y_height_norm = make_bounding_box_manual(img, img_prepared, roi)
             rim_id = get_rim_id_from_filename(i)
+            class_id = generate_class_label_by_id(rim_id)
+            img_width, img_height = get_image_size(i)
             #text_path = generate_text_file_name(i)
-            save_file_yolo(dest_label_file, i, rim_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm) #Zapis wyników
+            save_file_tf(dest_label_file, i, img_width, img_height, class_id, x_center_norm, y_center_norm, x_width_norm, y_height_norm) #Zapis wyników
 
 
         end_flag = True #Flaga konca pracy
@@ -175,13 +174,13 @@ def tensorflow_object_detection(mode, source_folder, dest_label_file, wrong_labe
             train_indexes = generate_train_dataset_indexes(num_of_files, train_amount)
             test_indexes = generate_test_dataset_indexes(num_of_files, train_indexes)
 
-            copy_image_files(splited_list, train_indexes, train_set_path, test_indexes, test_set_path)
+            write_header_csv(train_set_file)
+            write_header_csv(test_set_file)
+            copy_image_files_tf(splited_list, train_indexes, train_set_path, test_indexes, test_set_path)
             copy_label_data_tf(splited_list, label_list,train_indexes, train_set_path, train_set_file, test_indexes, test_set_path, test_set_file)
 
         end_flag = True
 
 
-    end_time = time.time()
-    time_of_execution = end_time - start_time
-    print('Czas wykonania programu: ', time_of_execution)
+
 

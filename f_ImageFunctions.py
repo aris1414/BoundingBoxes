@@ -21,9 +21,9 @@ def get_kernel_size(kernel):
 def get_image_size(img_path):
 
     image = load_image(img_path)
-    width, height = image.shape
+    width, height, temp = image.shape
 
-    return width,height
+    return height,width
 
 #Filtr medianowy
 def blur_image(img, kernel_size):

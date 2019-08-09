@@ -20,26 +20,41 @@ if ((mode != '1' and mode != '2' and mode != '3')):
     end_flag = True
 start_time = time.time()
 
-path = 'C:\\Users\\robawjo\\Desktop\\Black_Big'
-dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\labels.txt'
-wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Big\\wrong_bb.txt'
-train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set'
-test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set'
-train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set\\train.txt'
-test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set\\test.txt'
+#path = 'C:\\Users\\robawjo\\Desktop\\Black_Big'
+#dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\labels.txt'
+#wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Big\\wrong_bb.txt'
+#train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set'
+#test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set'
+#train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set\\train.txt'
+#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set\\test.txt'
 
+path = 'C:\\Users\\robawjo\\Desktop\\Black_Big1'
+dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big1\\labels.csv'
+wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Big1\\wrong_bb.txt'
+train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big1\\train_set'
+test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big1\\test_set'
+train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big1\\train_set\\train.csv'
+test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big1\\test_set\\test.csv'
 
-
+start_time = 0
 while(not end_flag):
 
-    if(enviorment == '1'):
-        yolo_v3(mode)
+    if(enviroment == '1'):
+        start_time = time.time()
+        yolo_v3(mode, path, dest_file_path, wrong_bb_path, train_set_path, train_set_file, test_set_path, test_set_file)
+        end_flag = True
 
     elif(enviroment == '2'):
-        tensorflow_object_detection(mode)
+        start_time = time.time()
+        tensorflow_object_detection(mode, path, dest_file_path, wrong_bb_path, train_set_path, train_set_file, test_set_path, test_set_file)
+        end_flag = True
 
     else:
+        start_time = time.time()
         print('Wybrano zły tryb pracy. Program zostanie zakończony.')
         end_flag = True
 
 
+    end_time = time.time()
+    time_of_execution = end_time - start_time
+    print('Czas wykonania programu: ', time_of_execution)
