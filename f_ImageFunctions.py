@@ -17,6 +17,14 @@ def get_kernel_size(kernel):
     else:
         return kernel
 
+#Zwraca rozmiar zdjęcia
+def get_image_size(img_path):
+
+    image = load_image(img_path)
+    width, height = image.shape
+
+    return width,height
+
 #Filtr medianowy
 def blur_image(img, kernel_size):
 
@@ -68,17 +76,7 @@ def make_bounding_box(img_color, img_gray, circle):
     right_bottom_x = int((x_cord + radius) * 1.03) # Wyszukiwanie boków BoundingBoxa - prawy dolny
     right_bottom_y = int((y_cord + radius) * 1.03)
 
-   # x_min_norm = float(left_top_x / image_width) 
-    #x_max_norm = float(right_top_x / image_width)
 
-    #y_min_norm = float(left_top_y / image_height)
-    #y_max_norm = float(left_bottom_y / image_height)
-
-    #x_abs = x_max_norm - x_min_norm #Obliczanie długości boku - oś X   
-    #y_abs = y_max_norm - y_min_norm  #Obliczanie długości boku - oś Y
-
-    #x_center = float(circle[0,0] / image_width) #Środek BoundingBoxa
-    #y_center = float(circle[0,1] / image_height)
 
     img_temp = img_color
 
@@ -96,18 +94,6 @@ def make_bounding_box_manual(img_color, img_gray, rect_points):
 
     left_top = rect_points[0]
     right_bottom = rect_points[1]
-
-    #x_center = int((left_top[0] + right_bottom[0])/2)
-    #y_center = int((left_top[1] + right_bottom[1])/2)
-
-    #x_center_norm = float(x_center/image_width)
-    #y_center_norm = float(y_center/image_height)
-
-    #x_width = right_bottom[0] - left_top[0]
-    #y_height = right_bottom[1] - left_top[1]
-
-    #x_width_norm = float(x_width / image_width)
-    #y_width_norm = float(y_height / image_height)
     
 
     return left_top[0],left_top[1],right_bottom[0],right_bottom[1]

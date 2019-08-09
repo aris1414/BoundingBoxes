@@ -74,7 +74,7 @@ def copy_image_files(list_of_files, train_indexes, train_path, test_indexes, tes
         shutil.copy2(temp_path2, test_path)
 
 
-
+#Kopiowanie etykiet z pliku zbiorczego. Podział na zbiory etykiet uczących i testujących
 def copy_label_data(list_of_files, list_of_labels, train_indexes, train_folder_path, train_label_path, test_indexes,test_folder_path, test_label_path):
 
     for i in train_indexes:
@@ -86,6 +86,23 @@ def copy_label_data(list_of_files, list_of_labels, train_indexes, train_folder_p
     for j in test_indexes:
         head, tail = list_of_labels[j].split(' ')
         new_head = get_new_file_path(head, test_folder_path)
+        new_line = new_head + ' ' + tail
+        append_label_to_file(test_label_path, new_line)
+
+#Kopiowanie etykiet z pliku zbiorczego. Podział na zbiory etykiet uczących i testujących
+def copy_label_data_tf(list_of_files, list_of_labels, train_indexes, train_folder_path, train_label_path, test_indexes,test_folder_path, test_label_path):
+
+    for i in train_indexes:
+        splited = list_of_labels[i].split(',')
+        tail = str(splited[1]) + ',' + str(splited[2]) + ',' + str(splited[3]) + ',' + str(splited[4]) + ',' + str(splited[5]) + ',' + str(splited[6]) + ',' + str(splited[7]) 
+        new_head = get_new_file_path(splited[0], train_folder_path)
+        new_line = new_head + ',' + tail
+        append_label_to_file(train_label_path, new_line)
+
+    for j in test_indexes:
+        splited = list_of_labels[i].split(',')
+        tail = str(splited[1]) + ',' + str(splited[2]) + ',' + str(splited[3]) + ',' + str(splited[4]) + ',' + str(splited[5]) + ',' + str(splited[6]) + ',' + str(splited[7]) 
+        new_head = get_new_file_path(splited[0], test_folder_path)
         new_line = new_head + ' ' + tail
         append_label_to_file(test_label_path, new_line)
 

@@ -32,12 +32,14 @@ test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set\\test.txt'
 
 while(not end_flag):
 
-    if(enviorment = '1'):
+    if(enviorment == '1'):
         yolo_v3(mode)
 
-    elif(enviroment = '2'):
+    elif(enviroment == '2'):
         tensorflow_object_detection(mode)
 
     else:
-        pass
+        print('Wybrano zły tryb pracy. Program zostanie zakończony.')
+        end_flag = True
+
 

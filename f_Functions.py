@@ -45,12 +45,40 @@ def generate_text_file_name(path):
     result = name_without_ext[0] + '.txt'
     return result
 
+#Generuje opis
+def generate_class_label_by_id(id):
 
-def save_file(path,img_path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
-    file = open(path,"a")
+    class_label = ''
+    if id < 10:
+        class_label = 'Rim00' + str(id)
+    else:
+        class_label = 'Rim0' + str(id)
+
+    return class_label
+
+def save_file_yolo(path,img_path,rim_id, bb_center_x, bb_center_y, bb_width, bb_height):
+
+    file = open(path,"a")      
     data_frame = str(img_path) +  ' ' + str(bb_center_x) + ',' + str(bb_center_y) + ',' + str(bb_width) + ',' + str(bb_height) + ',' + str(rim_id) + '\n'
     file.write(data_frame)
     file.close()
+
+
+def write_header_csv(path):
+
+    file = open(path, "w")
+    data_frame = 'filename,width,height,class,xmin,ymin,xmax,ymax'
+    file.write(data_frame)
+    file.close()
+
+
+def save_file_tf(path,img_path, img_width, img_height, class_name, bb_center_x, bb_center_y, bb_width, bb_height):
+
+    file = open(path,"a")      
+    data_frame = str(img_path) +  ',' + str(img_width) + ',' + str(img_height) + ',' + str(class_name) + ',' + str(bb_center_x) + ',' + str(bb_center_y) + ',' + str(bb_width) + ',' + str(bb_height)
+    file.write(data_frame)
+    file.close()
+
 
 
 def save_wrong_bb(filename,wrong_bb):
