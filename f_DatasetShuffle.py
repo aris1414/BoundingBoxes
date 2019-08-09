@@ -76,7 +76,7 @@ def copy_image_files(list_of_files, train_indexes, train_path, test_indexes, tes
 def copy_image_files_tf(list_of_files, train_indexes, train_path, test_indexes, test_path):
 
     header_skipped1 = False
-    header_skipped1 = False
+    header_skipped2 = False
     for i in train_indexes:
         if(header_skipped1 == False):
             header_skipped1 = True
