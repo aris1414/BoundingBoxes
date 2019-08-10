@@ -115,7 +115,7 @@ def mouse_click(event, x, y, flags, param):
 
  
 def manual_mode(img):
-
+    pass
     
     global refPt
     refPt.clear()
@@ -134,7 +134,7 @@ def manual_mode(img):
  
         # if the 'c' key is pressed, break from the loop
         elif key == ord("c"):
-            cv.destroyAllWindows()
+            #cv.destroyAllWindows()
             break
 
         if(len(refPt)==2):

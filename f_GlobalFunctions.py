@@ -41,13 +41,13 @@ def yolo_v3(mode, source_folder, dest_label_file, wrong_label_file, train_set_pa
         end_flag = True
 
     elif(mode == '2'): #Jeśli tryb ręczny
-        manual_mode = ''
+        manual_mode_sel = ''
         print('Wybierz rodzaj trybu manualnego: 1 - Brakujące zdjęcia, 2 - wszystkie zdjęcia\n')
-        manual_mode = input('Twój wybór: ')
+        manual_mode_sel = input('Twój wybór: ')
         list_of_images = []
-        if manual_mode == '1':
+        if manual_mode_sel == '1':
             list_of_images = read_wrong_bb(wrong_label_file) #Odczytaj plik z danymi do oznaczenia
-        elif manual_mode == '2':
+        elif manual_mode_sel == '2':
             list_of_images = get_list_of_files_in_directory(source_folder, '.bmp')
         else:
             exit
@@ -55,6 +55,7 @@ def yolo_v3(mode, source_folder, dest_label_file, wrong_label_file, train_set_pa
         for i in list_of_images:
             img = load_image(i)
             img_prepared = prepare_image(img, 3)
+            print(i,'\n')
             roi = manual_mode(img)
             x_center_norm, y_center_norm, x_width_norm, y_height_norm = make_bounding_box_manual(img, img_prepared, roi)
             rim_id = get_rim_id_from_filename(i)
