@@ -12,7 +12,6 @@ def yolo_v3(mode, source_folder, dest_label_file, wrong_label_file, train_set_pa
     if mode == '1': #Jeśli tryb automatyczny
         initialize_file(dest_label_file)
         initialize_file(wrong_label_file)
-
         file_list = get_list_of_files_in_directory(source_folder, '.bmp')
         wrong_bb = []
 
@@ -42,9 +41,18 @@ def yolo_v3(mode, source_folder, dest_label_file, wrong_label_file, train_set_pa
         end_flag = True
 
     elif(mode == '2'): #Jeśli tryb ręczny
+        manual_mode = ''
+        print('Wybierz rodzaj trybu manualnego: 1 - Brakujące zdjęcia, 2 - wszystkie zdjęcia\n')
+        manual_mode = input('Twój wybór: ')
+        list_of_images = []
+        if manual_mode == '1':
+            list_of_images = read_wrong_bb(wrong_label_file) #Odczytaj plik z danymi do oznaczenia
+        elif manual_mode == '2':
+            list_of_images = get_list_of_files_in_directory(source_folder, '.bmp')
+        else:
+            exit
 
-        wrong_bbs = read_wrong_bb(wrong_label_file) #Odczytaj plik z danymi do oznaczenia
-        for i in wrong_bbs:
+        for i in list_of_images:
             img = load_image(i)
             img_prepared = prepare_image(img, 3)
             roi = manual_mode(img)

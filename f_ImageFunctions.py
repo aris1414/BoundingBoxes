@@ -130,7 +130,7 @@ def manual_mode(img):
         # if the 'r' key is pressed, reset the cropping region
         if key == ord("r"):
             refPt.clear()
-            img = img_backup
+            img = copy.copy(img_backup)
  
         # if the 'c' key is pressed, break from the loop
         elif key == ord("c"):
@@ -138,7 +138,7 @@ def manual_mode(img):
             break
 
         if(len(refPt)==2):
-            cv.rectangle(img, refPt[0], refPt[1], (0, 255, 0), 2)
+            cv.rectangle(img, refPt[0], refPt[1], (0, 255, 0), 1)
 
     if len(refPt) == 2:
         img_roi = img[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
