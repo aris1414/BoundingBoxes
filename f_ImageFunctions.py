@@ -133,7 +133,7 @@ def manual_mode(img):
             img = copy.copy(img_backup)
  
         # if the 'c' key is pressed, break from the loop
-        elif key == ord("c"):
+        elif key == ord("c") and len(refPt)==2:
             #cv.destroyAllWindows()
             break
 
