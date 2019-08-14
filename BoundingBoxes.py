@@ -20,21 +20,24 @@ if ((mode != '1' and mode != '2' and mode != '3')):
     end_flag = True
 start_time = time.time()
 
-#path = 'C:\\Users\\robawjo\\Desktop\\Black_Big'
-#dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\labels.txt'
-#wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Black_Big\\wrong_bb.txt'
-#train_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set'
-#test_set_path = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set'
-#train_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\train_set\\train.txt'
-#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Black_Big\\test_set\\test.txt'
 
-path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768'
-dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\labels.txt'
-wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\wrong_bb.txt'
-train_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set'
-test_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set'
-train_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set\\train.txt'
-test_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set\\test.txt'
+path = input('Sciezka do katalogu ze zdjeciami: ')
+dest_file_path = path + "\\labels.txt"
+wrong_bb_path = path + "\\wrong_bb.txt"
+train_set_path = path + "\\train_set"
+test_set_path = path + "\\test_set"
+
+train_set_file = train_set_path + "\\train.txt"
+test_set_file = test_set_path + "\\test.txt"
+
+
+#path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768'
+#dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\labels.txt'
+#wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\wrong_bb.txt'
+#train_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set'
+#test_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set'
+#train_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set\\train.txt'
+#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set\\test.txt'
 
 start_time = 0
 while(not end_flag):
