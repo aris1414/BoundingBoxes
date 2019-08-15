@@ -21,7 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="f_DataAug_BBox.py" />
     <Compile Include="BoundingBoxes.py" />
+    <Compile Include="f_DataAug.py" />
     <Compile Include="f_DatasetShuffle.py">
       <SubType>Code</SubType>
     </Compile>

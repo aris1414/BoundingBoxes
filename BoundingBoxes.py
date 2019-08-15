@@ -3,7 +3,7 @@ import time
 import os
 
 #Wybór środowiska do przygotowania zdjęć
-print('Wybierz model dla którego chcesz przygotowac dane:\n1 - YOLOv3\n2 - Tensorflow object_detection\n')
+print('Wybierz model dla którego chcesz przygotowac dane:\n1 - YOLOv3\n2 - Tensorflow object_detection\n 3 - Data Augmentation\n ')
 enviroment = input('Twoj wybor: ')
 
 
@@ -13,7 +13,7 @@ mode = input('Twoj wybor: ')
 end_flag = False
 
 #Warunek zakończenia pracy
-if (enviroment != '1' and enviroment != '2'):
+if (enviroment != '1' and enviroment != '2' and enviroment != '3'):
     end_flag = True
 
 if ((mode != '1' and mode != '2' and mode != '3')):
@@ -52,6 +52,9 @@ while(not end_flag):
         tensorflow_object_detection(mode, path, dest_file_path, wrong_bb_path, train_set_path, train_set_file, test_set_path, test_set_file)
         end_flag = True
 
+    elif(enviroment == '3'):
+        pass
+        end_flag = True
     else:
         start_time = time.time()
         print('Wybrano zły tryb pracy. Program zostanie zakończony.')
