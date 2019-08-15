@@ -6,7 +6,8 @@ import os
 print('Wybierz model dla którego chcesz przygotowac dane:\n1 - YOLOv3\n2 - Tensorflow object_detection\n 3 - Data Augmentation\n ')
 enviroment = input('Twoj wybor: ')
 
-#Wybór trybu pracy
+
+    #Wybór trybu pracy
 print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - Podział na zbiory uczacy i testujący \n')
 mode = input('Twoj wybor: ')
 end_flag = False
@@ -16,7 +17,7 @@ end_flag = False
 if (enviroment != '1' and enviroment != '2' and enviroment != '3'):
     end_flag = True
 
-if ((mode != '1' and mode != '2' and mode != '3') ):
+if ((mode != '1' and mode != '2' and mode != '3')  ):
     end_flag = True
 start_time = time.time()
 
@@ -54,10 +55,13 @@ while(not end_flag):
         end_flag = True
 
     elif(enviroment == '3'):
-        path_to_txt = 'C:\\Users\\robawjo\\Desktop\\DataAug\\test\\test.txt'
-        dest_folder = 'C:\\Users\\robawjo\\Desktop\\DataAug\\Copies'
-        dest_file = 'C:\\Users\\robawjo\\Desktop\\DataAug\\copies.txt'
-        data_augmentation(path_to_txt, dest_folder, dest_file, 15, 0.1)
+        path_to_txt = input('Sciezka do pliku txt z listą zdjec: ')
+        dest_folder = input('Sciezka do folderu docelowego z kopiami: ')
+        dest_file = input('Sciezka do pliku z annotacjami dla kopii: ')
+        num_of_copies = input('Liczba kopii danego zdjecia: ')
+        translation_ratio = input('Wspolczynnik przesunięcia: ')
+        start_time = time.time()
+        data_augmentation(path_to_txt, dest_folder, dest_file, int(num_of_copies), float(translation_ratio))
         end_flag = True
     else:
         start_time = time.time()

@@ -216,7 +216,10 @@ def data_augmentation(path_to_txt,dest_folder, dest_file, num_of_copies, transfo
             bbox_copy = copy.copy(bbox_int)
 
             new_img, new_bbox = translate(img_copy, bbox_copy) #Translacja
-            new_filename = generate_class_label_by_id(class_id) + '_copy_' + str(j) # Nazwa pliku wyjsciowego
+            old_filename = get_filename_from_path(path)
+            old_filename_without_ext = old_filename.split('.')
+
+            new_filename = old_filename_without_ext[0] + '_copy_' + str(j) # Nazwa pliku wyjsciowego
             new_path = dest_folder + '\\' + new_filename
 
             new_image_path = new_path + '.bmp'
