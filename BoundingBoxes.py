@@ -6,26 +6,27 @@ import os
 print('Wybierz model dla którego chcesz przygotowac dane:\n1 - YOLOv3\n2 - Tensorflow object_detection\n 3 - Data Augmentation\n ')
 enviroment = input('Twoj wybor: ')
 
-
 #Wybór trybu pracy
 print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - Podział na zbiory uczacy i testujący \n')
 mode = input('Twoj wybor: ')
 end_flag = False
 
+
 #Warunek zakończenia pracy
 if (enviroment != '1' and enviroment != '2' and enviroment != '3'):
     end_flag = True
 
-if ((mode != '1' and mode != '2' and mode != '3')):
+if ((mode != '1' and mode != '2' and mode != '3') ):
     end_flag = True
 start_time = time.time()
 
 
-path = input('Sciezka do katalogu ze zdjeciami: ')
+#path = input('Sciezka do katalogu ze zdjeciami: ')
+path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_katalog_800_600'
 dest_file_path = path + "\\labels.txt"
 wrong_bb_path = path + "\\wrong_bb.txt"
-train_set_path = path + "\\train_set"
-test_set_path = path + "\\test_set"
+train_set_path = path + "\\train"
+test_set_path = path + "\\test"
 
 train_set_file = train_set_path + "\\train.txt"
 test_set_file = test_set_path + "\\test.txt"
@@ -37,7 +38,7 @@ test_set_file = test_set_path + "\\test.txt"
 #train_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set'
 #test_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set'
 #train_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set\\train.txt'
-#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set\\test.txt'
+#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_katalog_800_600\\test_set\\test.txt'
 
 start_time = 0
 while(not end_flag):
@@ -53,7 +54,7 @@ while(not end_flag):
         end_flag = True
 
     elif(enviroment == '3'):
-        pass
+        data_augmentation(train_set_file)
         end_flag = True
     else:
         start_time = time.time()

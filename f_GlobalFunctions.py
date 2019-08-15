@@ -2,6 +2,7 @@ import numpy as np
 from f_Functions import *
 from f_ImageFunctions import *
 from f_DatasetShuffle import *
+from f_DataAug import *
 import time
 import os
 
@@ -191,6 +192,50 @@ def tensorflow_object_detection(mode, source_folder, dest_label_file, wrong_labe
         end_flag = True
 
 
-def data_augmentation(file_path):
+def data_augmentation(path_to_txt,dest_folder, dest_file, num_of_copies, transform_ratio):
+
+    label_list = []
+    label_list = read_label_file(path_to_txt) #Zaczytanie danych po procesie oznaczania
+
+    dest_folder_exist = os.path.exists(dest_folder) #Sprawdza czy istnieje folder docelowy, jeśli nie to go tworzy
+
+    if dest_folder_exist == False:
+        os.mkdir(dest_folder, 0o777)
+
+    for i in label_list:
+
+        path, tail = split_record(i) #Odseparowanie sciezki do pliku od BB
+        bbox_int, class_id = convert_bbox(tail) #Konwersja informacji o BB na ndArray
+        img = load_image(path) #Ładowanie obrazu bazowego
+
+        for j in range(0,num_of_copies):
+
+            translate = RandomTranslate(0.08,False) #Konstruktor przekształcenia
+
+            img_copy = copy.copy(img) #Kopie obrazow i BBoxów
+            bbox_copy = copy.copy(bbox_int)
+
+            new_img, new_bbox = translate(img_copy, bbox_copy) #Translacja
+            new_filename = generate_class_label_by_id(class_id) + '_copy_' + j + '.bmp' # Nazwa pliku wyjsciowego
+            new_path = dest_folder + '\\' + new_filename
+
+            new_image_path = new_path + '.bmp'
+
+            cv.imwrite(new_image_path, new_img) #Zapis zdjecia do pliku
+            save_file_yolo(dest_file, new_image_path, class_id, new_bbox[0][0], new_bbox[0][1], new_bbox[0][2], new_bbox[0][3])
 
 
+            
+            
+        
+
+        
+
+
+       
+
+
+
+        pass
+
+        

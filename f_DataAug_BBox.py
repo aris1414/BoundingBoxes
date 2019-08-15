@@ -160,7 +160,9 @@ def get_corners(bboxes):
     """
     width = (bboxes[:,2] - bboxes[:,0]).reshape(-1,1)
     height = (bboxes[:,3] - bboxes[:,1]).reshape(-1,1)
-    
+
+   
+        
     x1 = bboxes[:,0].reshape(-1,1)
     y1 = bboxes[:,1].reshape(-1,1)
     
@@ -170,6 +172,8 @@ def get_corners(bboxes):
     x3 = x1
     y3 = y1 + height
     
+
+
     x4 = bboxes[:,2].reshape(-1,1)
     y4 = bboxes[:,3].reshape(-1,1)
     

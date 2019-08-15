@@ -158,10 +158,23 @@ def process_label_list_tf(list_of_labels):
     return splited_list
 
 
-
 def append_label_to_file(path, data):
 
     file = open(path,"a")
     new_line = data + '\n'
     file.write(new_line)
     file.close()
+
+def split_record(record):
+    path, bbox = record.split(' ')
+    return path,bbox
+
+def convert_bbox(bbox):
+    
+    bbox_list = bbox.split(',')
+    x_np = np.array(bbox_list, dtype = int)
+    bbox_tab = np.ndarray(shape = (1,4), dtype = int, buffer = x_np)
+    bbox_result = bbox_tab[0:4]
+    np.transpose(bbox_result)
+    class_id = x_np[4]
+    return bbox_result, class_id
