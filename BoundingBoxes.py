@@ -54,7 +54,10 @@ while(not end_flag):
         end_flag = True
 
     elif(enviroment == '3'):
-        data_augmentation(train_set_file)
+        path_to_txt = 'C:\\Users\\robawjo\\Desktop\\DataAug\\test\\test.txt'
+        dest_folder = 'C:\\Users\\robawjo\\Desktop\\DataAug\\Copies'
+        dest_file = 'C:\\Users\\robawjo\\Desktop\\DataAug\\copies.txt'
+        data_augmentation(path_to_txt, dest_folder, dest_file, 15, 0.1)
         end_flag = True
     else:
         start_time = time.time()

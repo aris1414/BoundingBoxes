@@ -210,13 +210,13 @@ def data_augmentation(path_to_txt,dest_folder, dest_file, num_of_copies, transfo
 
         for j in range(0,num_of_copies):
 
-            translate = RandomTranslate(0.08,False) #Konstruktor przekształcenia
+            translate = RandomTranslate(transform_ratio,False) #Konstruktor przekształcenia
 
             img_copy = copy.copy(img) #Kopie obrazow i BBoxów
             bbox_copy = copy.copy(bbox_int)
 
             new_img, new_bbox = translate(img_copy, bbox_copy) #Translacja
-            new_filename = generate_class_label_by_id(class_id) + '_copy_' + j + '.bmp' # Nazwa pliku wyjsciowego
+            new_filename = generate_class_label_by_id(class_id) + '_copy_' + str(j) # Nazwa pliku wyjsciowego
             new_path = dest_folder + '\\' + new_filename
 
             new_image_path = new_path + '.bmp'
