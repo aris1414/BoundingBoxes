@@ -62,7 +62,7 @@ while(not end_flag):
         translation_ratio = input('Wspolczynnik przesunięcia: ')
         start_time = time.time()
         data_augmentation(path_to_txt, dest_folder, dest_file, int(num_of_copies), float(translation_ratio))
-        end_flag = True
+        #end_flag = True
     else:
         start_time = time.time()
         print('Wybrano zły tryb pracy. Program zostanie zakończony.')
