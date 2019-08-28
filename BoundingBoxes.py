@@ -2,59 +2,48 @@ from f_GlobalFunctions import *
 import time
 import os
 
+mode = '0'
+end_flag = False
 #Wybór środowiska do przygotowania zdjęć
-print('Wybierz model dla którego chcesz przygotowac dane:\n1 - YOLOv3\n2 - Tensorflow object_detection\n 3 - Data Augmentation\n ')
+print('Wybierz tryb działania aplikacji:\n1 - YOLOv3\n2 - Data Augmentation\n ')
 enviroment = input('Twoj wybor: ')
 
-
-    #Wybór trybu pracy
-print('Wybierz tryb pracy: \n', '1 - Automatyczne oznaczanie zdjęć \n', '2 - Reczne oznaczanie zdjęć \n', '3 - Podział na zbiory uczacy i testujący \n')
-mode = input('Twoj wybor: ')
-end_flag = False
-
+if(enviroment == '1'):
+    print('Wybierz tryb pracy: \n', '1 - Oznaczanie zdjęć \n', '2 - Podział na zbiory uczący i testujący \n')
+    mode = input('Twoj wybor: ')
+   
 
 #Warunek zakończenia pracy
-if (enviroment != '1' and enviroment != '2' and enviroment != '3'):
+if (enviroment != '1' and enviroment != '2'):
     end_flag = True
 
-if ((mode != '1' and mode != '2' and mode != '3')  ):
+if ((enviroment == '1') and (mode != '1' and mode != '2')):
     end_flag = True
+    
+
 start_time = time.time()
+path = ''
 
 
-#path = input('Sciezka do katalogu ze zdjeciami: ')
-path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_katalog_800_600'
-dest_file_path = path + "\\labels.txt"
-wrong_bb_path = path + "\\wrong_bb.txt"
-train_set_path = path + "\\train"
-test_set_path = path + "\\test"
-
-train_set_file = train_set_path + "\\train.txt"
-test_set_file = test_set_path + "\\test.txt"
-
-
-#path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768'
-#dest_file_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\labels.txt'
-#wrong_bb_path ='C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\wrong_bb.txt'
-#train_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set'
-#test_set_path = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\test_set'
-#train_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_full_1024_768\\train_set\\train.txt'
-#test_set_file = 'C:\\Users\\robawjo\\Desktop\\Zdjecia_czarne_katalog_800_600\\test_set\\test.txt'
 
 start_time = 0
 while(not end_flag):
 
     if(enviroment == '1'):
+        path = input('Sciezka do folderu ze zdjeciami: ')
+        dest_file_path = path + "\\labels.txt"
+        wrong_bb_path = path + "\\wrong_bb.txt"
+        train_set_path = path + "\\train"
+        test_set_path = path + "\\test"
+
+        train_set_file = train_set_path + "\\train.txt"
+        test_set_file = test_set_path + "\\test.txt"
+
         start_time = time.time()
         yolo_v3(mode, path, dest_file_path, wrong_bb_path, train_set_path, train_set_file, test_set_path, test_set_file)
         end_flag = True
 
     elif(enviroment == '2'):
-        start_time = time.time()
-        tensorflow_object_detection(mode, path, dest_file_path, wrong_bb_path, train_set_path, train_set_file, test_set_path, test_set_file)
-        end_flag = True
-
-    elif(enviroment == '3'):
         path_to_txt = input('Sciezka do pliku txt z listą zdjec: ')
         dest_folder = input('Sciezka do folderu docelowego z kopiami: ')
         dest_file = input('Sciezka do pliku z annotacjami dla kopii: ')
